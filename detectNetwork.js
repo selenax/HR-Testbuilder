@@ -29,7 +29,7 @@ var detectNetwork = function(cardNumber) {
       return 'MasterCard';
     } else if((prefix3 === 6011 || prefix5 === 644 || prefix5 === 645 || prefix5 === 646 || prefix5 === 647 || prefix5 === 648 || prefix5 === 649 || prefix1 === 65) && (cardNumber.length === 16 || cardNumber.length === 19)) {
       return 'Discover';
-    } else if((prefix3 === 5018 || prefix3 === 5020 || prefix3 === 5038 || prefix3 === 6304) && (cardNumber.length === 12 || cardNumber.length === 13 || cardNumber.length === 14 || cardNumber.length === 15 ||cardNumber.length === 16 || cardNumber.length === 17 || cardNumber.length === 18 || cardNumber.length === 19)) {
+    } else if((prefix3 === 5018 || prefix3 === 5020 || prefix3 === 5038 || prefix3 === 6304) && (cardNumber.length >= 12 && cardNumber.length <= 19)) {
       return 'Maestro';
     // } else if(prefix4 === 633110 && cardNumber.length === 16) {
     //  return 'Switch';
