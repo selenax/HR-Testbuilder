@@ -38,6 +38,4 @@ var detectNetwork = function(cardNumber) {
     }
 };
 
-// detectNetwork('38345678901234');
-// detectNetwork('39345678901234');
 
