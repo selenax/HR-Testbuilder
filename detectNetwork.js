@@ -25,7 +25,7 @@ var detectNetwork = function(cardNumber) {
       return "American Express";
       } else if (prefix2 === 4 && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)) {
       return 'Visa';
-      } else if((prefix1 === 51 || prefix1 === 52 || prefix1 === 53 || prefix1 === 54 || prefix1 === 55) && cardNumber.length === 16) {
+      } else if((prefix1 >=51 && prefix1 <= 55) && cardNumber.length === 16) {
       return 'MasterCard';
     } else if((prefix3 === 6011 || prefix5 === 644 || prefix5 === 645 || prefix5 === 646 || prefix5 === 647 || prefix5 === 648 || prefix5 === 649 || prefix1 === 65) && (cardNumber.length === 16 || cardNumber.length === 19)) {
       return 'Discover';
