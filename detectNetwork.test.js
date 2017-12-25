@@ -124,7 +124,6 @@ describe('Discover', function() {
 });
 
 
-
 describe('Maestro', function() {
   var should = chai.should();
 
@@ -147,13 +146,24 @@ describe('Maestro', function() {
 });
 
 
-// for (var prefix = 644; prefix <= 649; prefix++) {
-//   (function(prefix) {
-//     it('has a prefix of ' + prefix + ' and a length of 16');
-//     it('has a prefix of ' + prefix + ' and a length of 19');
-//   })(prefix)
+// describe('should support China UnionPay', function() {
+// var should = cha.should();
+// for(var length = 16; length <= 19; length++){
+//   for(var prefix = 622126; prefix <= 622925; prefix++) {
+//     (function(lenght, prefix) {
+//       it('has a prefix of ' + prefix + ' and a length of ' + length, function(){
+//         detectNetwork((prefix + '4567890123456').slice(0, length).should.equal('China UnionPay');
+//       })
+//     })(length, prefix);
+//   }
 // }
 
+// });
 
-describe('should support China UnionPay')
+
+// China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+// Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
+
+
+
 describe('should support Switch')

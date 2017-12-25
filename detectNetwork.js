@@ -31,17 +31,12 @@ var detectNetwork = function(cardNumber) {
       return 'Discover';
     } else if((prefix3 === 5018 || prefix3 === 5020 || prefix3 === 5038 || prefix3 === 6304) && (cardNumber.length >= 12 && cardNumber.length <= 19)) {
       return 'Maestro';
-    // } else if(prefix4 === 633110 && cardNumber.length === 16) {
-    //  return 'Switch';
-    // } else if(prefix1 === 62 && cardNumber.length === 16) {
-    //  return 'China UnionPay';
-    }
+    } else if ((prefix6 >= 622126 && prefix6 <= 622925) || (prefix5 >= 624 && prefix5 626) || (prefix3 >= 6282 && prefix3 <= 6288) && cardNumber.length >= 16 && cardNumber.length <=19) {
+      return 'China UnionPay';
+    } else if()
+  }
 };
 
 
-// for (var prefix = 644; prefix <= 649; prefix++) {
-//   (function(prefix) {
-//     it('has a prefix of ' + prefix + ' and a length of 16');
-//     it('has a prefix of ' + prefix + ' and a length of 19');
-//   })(prefix)
-// }
+// China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+// Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
