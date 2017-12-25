@@ -110,17 +110,7 @@ describe('MasterCard', function() {
   it('has a prefix of 53 and a length of 16', function() {
     expect(detectNetwork('5312345678901234')).to.equal('MasterCard');
   });
-
-
-  // You can also use should instead of expect, which changes the style
-  // slightly. It really doesn't matter which one you use - check out 
-  // http://chaijs.com/guide/styles/ for more info, but it's important
-  // to be consistent (unlike in this file, where we use BOTH expect
-  // and should, but that's just for learning), so once you've gotten 
-  // these tests to pass using should syntax, refactor your tests to 
-  // use either expect or should, but not both. 
   
- 
   it('has a prefix of 54 and a length of 16', function() {
     expect(detectNetwork('5412345678901234')).to.equal('MasterCard');
   });
@@ -130,75 +120,33 @@ describe('MasterCard', function() {
   });
 });
 
-describe('Discover', function() {
-   var expect = chai.expect;
-  // Tests without a function will be marked as "pending" and not run
-  // Implement these tests (and others) and make them pass!
-  it('has a prefix of 6011 and a length of 16', function() {
-    expect(detectNetwork('6011000000000004')).to.equal('Discover');
-  });
+describe('Discover', function(){
 
-  it('has a prefix of 6011 and a length of 19', function() {
-    expect(detectNetwork('6011588212001636739')).to.equal('Discover');
-  });
+  var should = chai.should();
+  for(var length = 16; length <= 19; length+=3) {
+    (function(length) {
+      it('has a prefix of 65 and a length of ' + length, function() {
+        detectNetwork('6512345678901234567'.slice(0,length)).should.equal('Discover');
+      });
+      it('has a prefix of 6011 and a length of ' + length, function() {
+        detectNetwork('6011345678901234567'.slice(0,length)).should.equal('Discover');
+      });
+    })(length); //close IIFE
+  }
 
-  it('has a prefix of 644 and a length of 19', function() {
-    expect(detectNetwork('6441588212001636739')).to.equal('Discover');
-});
-  it('has a prefix of 644 and a length of 16', function() {
-    expect(detectNetwork('6441582001636739')).to.equal('Discover');
-});
+  for(var length = 16; length <= 19; length+=3) {
+    for(var prefix = 644; prefix <= 649; prefix++) {
+      (function(length, prefix) {
+        it('has a prefix of ' + prefix + ' a length of ' + length, function() {
+          detectNetwork(prefix + '1345678901234567'.slice(0, length)).should.equal('Discover');
+        });
+      })(length, prefix)
+    }
+  }
 
-  it('has a prefix of 645 and a length of 16', function() {
-    expect(detectNetwork('6451588211636739')).to.equal('Discover');
-});
-
-  it('has a prefix of 645 and a length of 19', function() {
-    expect(detectNetwork('6451588212001636739')).to.equal('Discover');
-});
-
-it('has a prefix of 646 and a length of 19', function() {
-    expect(detectNetwork('6461588212001636739')).to.equal('Discover');
-});
-
-it('has a prefix of 646 and a length of 16', function() {
-    expect(detectNetwork('6461512001636739')).to.equal('Discover');
-});
-
-it('has a prefix of 647 and a length of 19', function() {
-    expect(detectNetwork('6471588212001636739')).to.equal('Discover');
-});
-
-it('has a prefix of 647 and a length of 16', function() {
-    expect(detectNetwork('6471588212636739')).to.equal('Discover');
-});
-
-it('has a prefix of 648 and a length of 19', function() {
-    expect(detectNetwork('6481588212001636739')).to.equal('Discover');
 });
 
 
-it('has a prefix of 648 and a length of 16', function() {
-    expect(detectNetwork('6481588211636739')).to.equal('Discover');
-});
-
-
-it('has a prefix of 65 and a length of 19', function() {
-    expect(detectNetwork('6591588212001636739')).to.equal('Discover');
-});
-
-it('has a prefix of 65 and a length of 16', function() {
-    expect(detectNetwork('6591588201636739')).to.equal('Discover');
-});
-
-it('has a prefix of 649 and a length of 19', function() {
-    expect(detectNetwork('6491588212001636739')).to.equal('Discover');
-  });
-
-it('has a prefix of 649 and a length of 16', function() {
-    expect(detectNetwork('6491588211636739')).to.equal('Discover');
-  });
-});
 
 describe('Maestro', function() {
   var should = chai.should();
