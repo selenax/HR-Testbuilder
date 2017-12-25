@@ -36,21 +36,17 @@ describe('Introduction to Mocha Tests - READ ME FIRST', function() {
     }
   });
 });
+
 describe('Diner\'s Club', function() {
-  // Be careful, tests can have bugs too...
 
-  it('has a prefix of 38 and a length of 14', function() {
-    if (detectNetwork('38345678901234') !== 'Diner\'s Club') {
-      throw new Error('Test failed');
-    }
-  });
-
-  it('has a prefix of 39 and a length of 14', function() {
-    if (detectNetwork('39345678901273') !== 'Diner\'s Club') {
-      throw new Error('Test failed');
-    }
- 
-  });
+  var should = chai.should();
+  for(var prefix = 38; prefix <= 39; prefix++) {
+    (function(prefix) {
+    it('has a prefix of ' + prefix + ' and a length of 14', function() {
+      detectNetwork(prefix + '345678901273').should.equal('Diner\'s Club');
+     });
+    })(prefix);
+  }
 });
 
 describe('American Express', function() {
@@ -63,7 +59,7 @@ describe('American Express', function() {
   // };
   var should = chai.should();
   for(var prefix = 34; prefix <= 37; prefix+=3) {
-    (function(prefix) {}
+    (function(prefix) {
     it('has a prefix of ' + prefix + ' and a length of 15', function() {
       detectNetwork(prefix + '3456789012345').should.equal('American Express');
       });
@@ -91,30 +87,17 @@ describe('MasterCard', function() {
   // Expect syntax is one way to do this, but there are others. 
   // If you want to know more, check out the documentation. 
   //   http://chaijs.com/api/bdd/
-  var expect = chai.expect;
- 
-  it('has a prefix of 51 and a length of 16', function() {
-    expect(detectNetwork('5112345678901234')).to.equal('MasterCard');
-  });
- 
-  it('has a prefix of 52 and a length of 16', function() {
-    expect(detectNetwork('5212345678901234')).to.equal('MasterCard');
-  });
- 
-  it('has a prefix of 53 and a length of 16', function() {
-    expect(detectNetwork('5312345678901234')).to.equal('MasterCard');
-  });
-  
-  it('has a prefix of 54 and a length of 16', function() {
-    expect(detectNetwork('5412345678901234')).to.equal('MasterCard');
-  });
- 
-  it('has a prefix of 55 and a length of 16', function() {
-    expect(detectNetwork('5512345678901234')).to.equal('MasterCard');
-  });
+  var should = chai.should();
+  for(var prefix = 51; prefix <= 55; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+        detectNetwork(prefix + '12345678901234').should.equal('MasterCard');
+      });
+    })(prefix);
+  }
 });
 
-describe('Discover', function(){
+describe('Discover', function() {
 
   var should = chai.should();
   for(var length = 16; length <= 19; length+=3) {
@@ -132,7 +115,7 @@ describe('Discover', function(){
     for(var prefix = 644; prefix <= 649; prefix++) {
       (function(length, prefix) {
         it('has a prefix of ' + prefix + ' a length of ' + length, function() {
-          detectNetwork(prefix + '1345678901234567'.slice(0, length)).should.equal('Discover');
+          detectNetwork((prefix + '1345678901234567').slice(0, length)).should.equal('Discover');
         });
       })(length, prefix);
     }
