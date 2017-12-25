@@ -56,19 +56,19 @@ describe('Diner\'s Club', function() {
 describe('American Express', function() {
   // It can get annoying to keep typing the if/throw, so here is a
   // helper function to throw an error if the input statement isn't true. 
-  var assert = function(isTrue) {
-    if(!isTrue) {
-      throw new Error('Test failed');
-    }
-  };
-
-  it('has a prefix of 34 and a length of 15', function() {
-    assert(detectNetwork('343456789012345') === 'American Express');
-  });
-
-  it('has a prefix of 37 and a length of 15', function() {
-    assert(detectNetwork('373456789012345') === 'American Express');
-  });
+  // var assert = function(isTrue) {
+  //   if(!isTrue) {
+  //     throw new Error('Test failed');
+  //   }
+  // };
+  var should = chai.should();
+  for(var prefix = 34; prefix <= 37; prefix+=3) {
+    (function(prefix) {}
+    it('has a prefix of ' + prefix + ' and a length of 15', function() {
+      detectNetwork(prefix + '3456789012345').should.equal('American Express');
+      });
+    })(prefix);
+  }
 });
 
 describe('Visa', function() {
@@ -76,20 +76,14 @@ describe('Visa', function() {
   // Chai provides an assert that acts the same as our previous assert.
   // Search the documentation to figure out how to access it. 
   //   http://chaijs.com/
- var assert = chai.assert;
- 
-
-  it('has a prefix of 4 and a length of 13', function() {
-    assert(detectNetwork('4123456789012') === 'Visa');
-  });
- 
-  it('has a prefix of 4 and a length of 16', function() {
-    assert(detectNetwork('4123456789012345') === 'Visa');
-  });
-
-  it('has a prefix of 4 and a length of 19', function() {
-    assert (detectNetwork('4123456789012345678') === 'Visa');
-  })
+ var should = chai.should();
+ for(var length = 13; length <= 19; length+=3) {
+  (function(length) {
+    it('has a prefix of 4 and a length of ' + length, function() {
+      detectNetwork('4123456789012123456'.slice(0, length)).should.equal('Visa');
+    });
+  })(length);
+ }
 });
 
 describe('MasterCard', function() {
@@ -140,7 +134,7 @@ describe('Discover', function(){
         it('has a prefix of ' + prefix + ' a length of ' + length, function() {
           detectNetwork(prefix + '1345678901234567'.slice(0, length)).should.equal('Discover');
         });
-      })(length, prefix)
+      })(length, prefix);
     }
   }
 
