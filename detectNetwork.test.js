@@ -146,27 +146,29 @@ describe('Maestro', function() {
 });
 
 
-describe('should support China UnionPay', function() {
-var should = cha.should();
+describe('China UnionPay', function() {
+var should = chai.should();
 for(var length = 16; length <= 19; length++){
   for(var prefix = 622126; prefix <= 622925; prefix++) {
-    (function(lenght, prefix) {
+    (function(length, prefix) {
       it('has a prefix of ' + prefix + ' and a length of ' + length, function(){
-        detectNetwork((prefix + '4567890123456').slice(0, length).should.equal('China UnionPay'));
+        detectNetwork((prefix + '4567890123456').slice(0, length)).should.equal('China UnionPay');
       })
     })(length, prefix);
   } //close inner loop
+
     for(var prefix = 624; prefix <= 626; prefix++) {
       (function(length, prefix) {
         it('has a prefix of ' + prefix + ' and a length of ' + length, function(){
-          detectNetwork((prefix + '1234567890123456'). slice(0, length).should.equal('China UnionPay'));
+          detectNetwork((prefix + '1234567890123456'). slice(0, length)).should.equal('China UnionPay');
         });
       })(length, prefix);
     } //close inner loop 
+
       for(var prefix = 6282; prefix <= 6288; prefix++) {
         (function(length, prefix) {
           it('has a prefix of ' + prefix + ' and a length of ' + length, function(){
-            detectNetwork((prefix + '123456789012345').slice(0, length).should.equal('China UnionPay'));
+            detectNetwork((prefix + '123456789012345').slice(0, length)).should.equal('China UnionPay');
           });
         }) (length, prefix); //close IIFE
       } //close inner loop
@@ -179,4 +181,25 @@ for(var length = 16; length <= 19; length++){
 
 
 
-describe('should support Switch')
+describe('Switch', function(){
+  var should = chai.should();
+  var length = [16, 18, 19];
+  var prefix = [4903, 4905, 4911, 4936, 564182, 633110, 6333, 6759];
+  for(var l of length) {
+    for(var p of prefix) {
+      (function(l, p){
+        it('has a prefix of ' + p + ' an aa length of ' + l, function(){
+          detectNetwork((p + '123456789012345').slice(0, l)).should.equaal('Switch');
+        });
+      })(l, p);
+    }
+  }
+});
+
+
+
+
+
+
+
+

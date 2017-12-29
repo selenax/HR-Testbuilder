@@ -31,9 +31,9 @@ var detectNetwork = function(cardNumber) {
       return 'Discover';
     } else if((prefix3 === 5018 || prefix3 === 5020 || prefix3 === 5038 || prefix3 === 6304) && (cardNumber.length >= 12 && cardNumber.length <= 19)) {
       return 'Maestro';
-    } else if ((prefix6 >= 622126 && prefix6 <= 622925) || (prefix5 >= 624 && prefix5 626) || (prefix3 >= 6282 && prefix3 <= 6288) && cardNumber.length >= 16 && cardNumber.length <=19) {
+    } else if (((prefix4 >= 622126 && prefix4 <= 622925 )|| (prefix5 >= 624 && prefix5 <= 626) || (prefix3 >= 6282 && prefix3 <= 6288)) && (cardNumber.length >= 16 && cardNumber.length <=19)) {
       return 'China UnionPay';
-    } else if()
+    } else if((prefix3 === 4903 || prefix3 === 4905 || prefix3 === 4911 || prefix3 === 4936 || prefix3 === 6333 || prefix === 6759 || prefix4 === 564182 || prefix4 === 633110) && (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.lengt === 19))
   }
 };
 
