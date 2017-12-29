@@ -23,6 +23,8 @@ var detectNetwork = function(cardNumber) {
     return 'Diner\'s Club';
       } else if ((prefix1 === 34 || prefix1 === 37  ) && cardNumber.length === 15) {
       return "American Express";
+      } else if((prefix3 === 4903 || prefix3 === 4905 || prefix3 === 4911 || prefix3 === 4936 || prefix3 === 6333 || prefix3 === 6759 || prefix4 === 564182 || prefix4 === 633110) && (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19)) {
+      return 'Switch';
       } else if (prefix2 === 4 && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)) {
       return 'Visa';
       } else if((prefix1 >=51 && prefix1 <= 55) && cardNumber.length === 16) {
@@ -33,10 +35,12 @@ var detectNetwork = function(cardNumber) {
       return 'Maestro';
     } else if (((prefix4 >= 622126 && prefix4 <= 622925 )|| (prefix5 >= 624 && prefix5 <= 626) || (prefix3 >= 6282 && prefix3 <= 6288)) && (cardNumber.length >= 16 && cardNumber.length <=19)) {
       return 'China UnionPay';
-    } else if((prefix3 === 4903 || prefix3 === 4905 || prefix3 === 4911 || prefix3 === 4936 || prefix3 === 6333 || prefix === 6759 || prefix4 === 564182 || prefix4 === 633110) && (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.lengt === 19))
+
+    }
   }
-};
 
 
-// China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
-// Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
+
+
+
+
